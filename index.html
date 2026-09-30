@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>THIERSHOP</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="top-header">
+      
+        <div class="header-row">
+
+            <div class="logo">
+                THIER
+            </div>
+
+            <div class="search-box">
+
+                <span>🔍</span>
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Rechercher un article"
+                    oninput="searchProducts()"
+                >
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-small">
+                BIENVENUE CHEZ
+            </span>
+
+            <h1>
+                THIERSHOP
+            </h1>
+
+            <p>
+                Mode, chaussures, beauté et accessoires
+                réunis au même endroit.
+            </p>
+
+            <a
+                href="#boutique"
+                class="hero-button"
+            >
+                Découvrir la boutique
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CATÉGORIES
+    ========================== -->
+
+    <section class="categories-section">
+
+        <div class="section-title">
+
+            <h2>
+                Catégories
+            </h2>
+
+        </div>
+
+
+        <div class="categories">
+
+            <button
+                class="category"
+                onclick="filterProducts('Vêtements')"
+            >
+                <span class="category-icon">
+                    👕
+                </span>
+
+                <span>
+                    Vêtements
+                </span>
+            </button>
+
+
+            <button
+                class="category"
+                onclick="filterProducts('Chaussures')"
+            >
+                <span class="category-icon">
+                    👟
+                </span>
+
+                <span>
+                    Chaussures
+                </span>
+            </button>
+
+
+            <button
+                class="category"
+                onclick="filterProducts('Beauté')"
+            >
+                <span class="category-icon">
+                    💄
+                </span>
+
+                <span>
+                    Beauté
+                </span>
+            </button>
+
+
+            <button
+                class="category"
+                onclick="filterProducts('Accessoires')"
+            >
+                <span class="category-icon">
+                    👜
+                </span>
+
+                <span>
+                    Accessoires
+                </span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         OFFRES À SAISIR
+    ========================== -->
+
+    <section class="offers-section">
+
+        <div class="offers-header">
+
+            <h2>
+                Offres à saisir
+            </h2>
+
+            <button
+                class="offers-arrow"
+                onclick="scrollToProducts()"
+            >
+                →
+            </button>
+
+        </div>
+
+
+        <div
+            id="offers-products"
+            class="offers-products"
+        >
+            <!-- Produits générés par JavaScript -->
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BOUTIQUE
+    ========================== -->
+
+    <section
+        id="boutique"
+        class="shop-section"
+    >
+
+        <div class="section-title">
+
+            <h2>
+                Nos produits
+            </h2>
+
+        </div>
+
+
+        <!-- Recherche / filtre -->
+
+        <div class="shop-controls">
+
+            <input
+                type="text"
+                id="product-search"
+                placeholder="Rechercher un produit..."
+                oninput="searchProductsFromShop()"
+            >
+
+
+            <select
+                id="categoryFilter"
+                onchange="filterProducts(this.value)"
+            >
+
+                <option value="Tous">
+                    Toutes les catégories
+                </option>
+
+                <option value="Vêtements">
+                    Vêtements
+                </option>
+
+                <option value="Chaussures">
+                    Chaussures
+                </option>
+
+                <option value="Beauté">
+                    Beauté
+                </option>
+
+                <option value="Accessoires">
+                    Accessoires
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Produits -->
+
+        <div
+            id="products"
+            class="products-grid"
+        >
+            <!-- Produits générés par JavaScript -->
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MODAL PANIER
+    ========================== -->
+
+    <div
+        id="cart-modal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <button
+                class="close"
+                onclick="closeCart()"
+                aria-label="Fermer"
+            >
+                ×
+            </button>
+
+
+            <h2>
+                🛒 Mon panier
+            </h2>
+
+
+            <div
+                id="cart-items"
+                class="cart-items"
+            >
+                <!-- Panier généré par JavaScript -->
+            </div>
+
+
+            <div class="cart-total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="cart-total">
+                    0 FCFA
+                </strong>
+
+            </div>
+
+
+            <button
+                class="checkout-button"
+                onclick="openCheckout()"
+            >
+                Passer la commande
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MODAL COMMANDE
+    ========================== -->
+
+    <div
+        id="checkout-modal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <button
+                class="close"
+                onclick="closeCheckout()"
+                aria-label="Fermer"
+            >
+                ×
+            </button>
+
+
+            <h2>
+                📦 Finaliser ma commande
+            </h2>
+
+
+            <p class="checkout-description">
+                Remplissez vos informations de livraison.
+            </p>
+
+
+            <form id="checkout-form">
+
+                <label for="customer-name">
+                    Nom complet
+                </label>
+
+                <input
+                    type="text"
+                    id="customer-name"
+                    placeholder="Ex : Jean Kouassi"
+                    required
+                >
+
+
+                <label for="customer-phone">
+                    Téléphone
+                </label>
+
+                <input
+                    type="tel"
+                    id="customer-phone"
+                    placeholder="Ex : 07 00 00 00 00"
+                    required
+                >
+
+
+                <label for="customer-city">
+                    Ville
+                </label>
+
+                <input
+                    type="text"
+                    id="customer-city"
+                    placeholder="Ex : Abidjan"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="checkout-button"
+                >
+                    Confirmer la commande
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         NAVIGATION MOBILE
+    ========================== -->
+
+    <nav class="bottom-nav">
+
+        <a
+            href="#"
+            class="bottom-item active"
+        >
+
+            <span class="bottom-icon">
+                🏠
+            </span>
+
+            <span>
+                Accueil
+            </span>
+
+        </a>
+
+
+        <a
+            href="#boutique"
+            class="bottom-item"
+        >
+
+            <span class="bottom-icon">
+                ▦
+            </span>
+
+            <span>
+                Catégories
+            </span>
+
+        </a>
+
+
+        <button
+            class="bottom-item"
+            onclick="openCart()"
+        >
+
+            <span class="bottom-icon cart-icon">
+
+                🛒
+
+                <span
+                    id="cart-count"
+                    class="cart-count"
+                >
+                    0
+                </span>
+
+            </span>
+
+            <span>
+                Panier
+            </span>
+
+        </button>
+
+
+        <button
+            class="bottom-item"
+            onclick="showFavorites()"
+        >
+
+            <span class="bottom-icon">
+                ♡
+            </span>
+
+            <span>
+                Favoris
+            </span>
+
+        </button>
+
+
+        <button
+            class="bottom-item"
+            onclick="showMessage('La section compte sera disponible prochainement.')"
+        >
+
+            <span class="bottom-icon">
+                👤
+            </span>
+
+            <span>
+                Compte
+            </span>
+
+        </button>
+
+    </nav>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>

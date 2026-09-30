@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Paiement - THIERSHOP</title>
+
+    <link
+        rel="stylesheet"
+        href="./style.css"
+    >
+</head>
+
+<body>
+
+    <header class="checkout-header">
+
+        <div class="container">
+
+            <a
+                href="./index.html"
+                class="logo"
+            >
+                THIERSHOP
+            </a>
+
+            <div class="secure-payment">
+                🔒 Paiement sécurisé
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="checkout-page">
+
+        <div class="container">
+
+            <div class="checkout-title">
+
+                <h1>
+                    Finaliser ma commande
+                </h1>
+
+                <p>
+                    Vérifiez vos informations avant de continuer.
+                </p>
+
+            </div>
+
+
+            <div class="checkout-layout">
+
+
+                <!-- ========================= -->
+                <!-- INFORMATIONS CLIENT -->
+                <!-- ========================= -->
+
+                <section class="checkout-form">
+
+                    <div class="checkout-card">
+
+                        <h2>
+                            Informations de livraison
+                        </h2>
+
+
+                        <div class="form-group">
+
+                            <label for="checkout-name">
+                                Nom complet
+                            </label>
+
+                            <input
+                                type="text"
+                                id="checkout-name"
+                                placeholder="Votre nom complet"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="checkout-phone">
+                                Téléphone
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="checkout-phone"
+                                placeholder="Ex : 0500000000"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="checkout-city">
+                                Ville
+                            </label>
+
+                            <input
+                                type="text"
+                                id="checkout-city"
+                                placeholder="Votre ville"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="checkout-address">
+                                Adresse de livraison
+                            </label>
+
+                            <textarea
+                                id="checkout-address"
+                                rows="3"
+                                placeholder="Quartier, rue, repère..."
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- LIVRAISON -->
+                    <!-- ========================= -->
+
+                    <div class="checkout-card">
+
+                        <h2>
+                            Mode de livraison
+                        </h2>
+
+
+                        <label class="delivery-option">
+
+                            <input
+                                type="radio"
+                                name="delivery"
+                                value="standard"
+                                checked
+                            >
+
+                            <span>
+                                <strong>
+                                    Livraison standard
+                                </strong>
+
+                                <small>
+                                    1 500 FCFA
+                                </small>
+                            </span>
+
+                        </label>
+
+
+                        <label class="delivery-option">
+
+                            <input
+                                type="radio"
+                                name="delivery"
+                                value="express"
+                            >
+
+                            <span>
+                                <strong>
+                                    Livraison express
+                                </strong>
+
+                                <small>
+                                    3 000 FCFA
+                                </small>
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- PAIEMENT -->
+                    <!-- ========================= -->
+
+                    <div class="checkout-card">
+
+                        <h2>
+                            Mode de paiement
+                        </h2>
+
+
+                        <div class="payment-method">
+
+                            <div class="payment-icon">
+                                W
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Wave
+                                </strong>
+
+                                <p>
+                                    Vous serez redirigé vers Wave
+                                    pour effectuer le paiement.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ========================= -->
+                <!-- RESUME COMMANDE -->
+                <!-- ========================= -->
+
+                <aside class="order-summary">
+
+                    <h2>
+                        Votre commande
+                    </h2>
+
+
+                    <div
+                        id="checkout-items"
+                        class="checkout-items"
+                    >
+                    </div>
+
+
+                    <div class="summary-line">
+
+                        <span>
+                            Articles
+                        </span>
+
+                        <strong id="summary-count">
+                            0 article
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-line">
+
+                        <span>
+                            Sous-total
+                        </span>
+
+                        <strong id="summary-subtotal">
+                            0 FCFA
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-line">
+
+                        <span>
+                            Livraison
+                        </span>
+
+                        <strong id="summary-delivery">
+                            1 500 FCFA
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong id="summary-total">
+                            0 FCFA
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="checkout-button"
+                        onclick="confirmCheckout()"
+                    >
+                        Continuer vers le paiement
+                    </button>
+
+
+                    <a
+                        href="./index.html"
+                        class="back-to-shop"
+                    >
+                        ← Retour à la boutique
+                    </a>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="./checkout.js"></script>
+
+</body>
+
+</html>
